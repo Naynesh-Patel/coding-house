@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper-50 text-ink-900 font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  ::selection {
+    @apply bg-volt-200 text-ink-950;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-paper-200;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-200 rounded-full border-2 border-paper-200;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-300;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-volt-500 ring-offset-2;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Layout */
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-10;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-2xs font-mono uppercase tracking-[0.2em] text-volt-600;
+  }
+
+  /* Typography scale */
+  .heading-xl {
+    @apply text-[2.5rem] font-semibold leading-[1.04] tracking-tightest sm:text-[3.25rem] lg:text-[4rem];
+  }
+
+  .heading-lg {
+    @apply text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl lg:text-[2.75rem];
+  }
+
+  .heading-md {
+    @apply text-2xl font-semibold leading-[1.15] tracking-tight sm:text-[1.75rem];
+  }
+
+  .heading-sm {
+    @apply text-xl font-semibold leading-[1.2] tracking-tight;
+  }
+
+  .lead {
+    @apply text-lg leading-[1.7] text-ink-500 sm:text-xl;
+  }
+
+  .prose-muted {
+    @apply text-ink-500 leading-[1.75];
+  }
+
+  /* Border utilities */
+  .hairline {
+    border-color: rgba(29, 33, 48, 0.08);
+  }
+
+  .hairline-dark {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Grid patterns */
+  .grid-overlay {
+    background-image:
+      linear-gradient(to right, rgba(28, 31, 38, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(28, 31, 38, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .grid-overlay-dark {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Dot grid */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(28, 31, 38, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .dot-grid-dark {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Card base */
+  .card {
+    @apply rounded-2xl border bg-paper-50 transition-all duration-200;
+    border-color: rgba(29, 33, 48, 0.08);
+  }
+
+  .card-hover {
+    @apply hover:shadow-soft;
+  }
+
+  .card-hover:hover {
+    border-color: rgba(29, 33, 48, 0.15);
+  }
+
+  /* Tag */
+  .tag {
+    @apply rounded-md px-2.5 py-1 font-mono text-xs text-ink-600;
+    background-color: rgba(29, 33, 48, 0.06);
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply border-t;
+    border-color: rgba(29, 33, 48, 0.08);
+  }
+
+  /* Input base */
+  .input-base {
+    @apply w-full rounded-xl border bg-paper-100 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-colors focus:border-volt-400 focus:outline-none focus:ring-2;
+    border-color: rgba(29, 33, 48, 0.08);
+    --tw-ring-color: rgba(59, 109, 254, 0.15);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+    mask-image: linear-gradient(to bottom, black 60%, transparent);
+  }
+  /* Number font feature */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Underline animation */
+  .underline-anim {
+    @apply relative inline-block;
+  }
+  .underline-anim::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px w-0 bg-current transition-all duration-300;
+  }
+  .underline-anim:hover::after {
+    @apply w-full;
+  }
+}
