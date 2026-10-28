@@ -27,14 +27,14 @@ export default function HeroSection({ avatarList }: HeroSectionProps) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="mx-auto max-w-4xl text-center">
           {/* Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#00A3FF]/25 bg-white px-4 py-1.5 text-xs font-semibold text-[#0A192F] mb-6 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-[#00A3FF] animate-pulse" />
-            <span className="tracking-wide">BUILDING SOLUTIONS · GROWING BUSINESSES</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FF6400]" />
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-[#00A3FF]/25 bg-white px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs font-semibold text-[#0A192F] mb-6 shadow-sm max-w-full">
+            <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0 rounded-full bg-[#00A3FF] animate-pulse" />
+            <span className="tracking-wide truncate">BUILDING SOLUTIONS · GROWING BUSINESSES</span>
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6400]" />
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-[#0A192F]">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] leading-[1.12]">
             We build software that scales{" "}
             <span className="text-[#FF6400]">
               your ambition

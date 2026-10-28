@@ -124,11 +124,11 @@ function CapabilitiesStrip() {
   return (
     <div className="border-y border-slate-200/80 bg-slate-50/80">
       <Container>
-        <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 py-5 sm:justify-between">
+        <ul className="flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-8 lg:gap-x-10 gap-y-3 py-4 sm:py-5 sm:justify-between">
           {items.map((item, idx) => (
-            <li key={item.label} className="flex items-center gap-2.5 text-sm font-medium text-slate-600">
+            <li key={item.label} className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600">
               <item.icon
-                className={`h-4 w-4 shrink-0 ${idx % 2 === 0 ? 'text-[#00A3FF]' : 'text-[#FF6400]'}`}
+                className={`h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 ${idx % 2 === 0 ? 'text-[#00A3FF]' : 'text-[#FF6400]'}`}
                 strokeWidth={1.8}
               />
               {item.label}
