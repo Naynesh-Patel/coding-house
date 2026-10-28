@@ -82,31 +82,31 @@ export default function ContactPage() {
       <Section className="pt-4 sm:pt-8">
         <Container>
           {/* 100% Strict NDA Protection Banner */}
-          <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-emerald-500/25 bg-emerald-50/70 p-5 text-emerald-950">
-            <div className="flex items-center gap-3">
+          <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-emerald-500/25 bg-emerald-50/70 p-4 sm:p-5 text-emerald-950 w-full">
+            <div className="flex items-start sm:items-center gap-3 min-w-0">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white">
-                <ShieldCheck className="h-6 w-6" />
+                <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="font-display text-sm font-bold text-emerald-950">
                   100% Strict Non-Disclosure Agreement (NDA) Protected
                 </p>
-                <p className="text-xs text-emerald-800 mt-0.5">
+                <p className="text-xs text-emerald-800 mt-0.5 leading-relaxed">
                   Your project specifications, proprietary IP, and product concepts remain strictly confidential under mutual legal protection.
                 </p>
               </div>
             </div>
-            <span className="inline-flex items-center rounded-full bg-emerald-600/10 px-3 py-1 text-2xs font-mono font-bold uppercase text-emerald-800 border border-emerald-600/20 shrink-0">
+            <span className="inline-flex items-center rounded-full bg-emerald-600/10 px-3 py-1 text-2xs font-mono font-bold uppercase text-emerald-800 border border-emerald-600/20 shrink-0 self-start sm:self-auto">
               Mutual NDA on Day 1
             </span>
           </div>
 
-          <div className="grid gap-12 lg:grid-cols-12">
+          <div className="grid gap-8 lg:gap-12 lg:grid-cols-12 w-full">
             {/* Form column */}
-            <div className="lg:col-span-7">
+            <div className="w-full lg:col-span-7">
               <Reveal>
                 {submitted ? (
-                  <div className="flex flex-col items-center rounded-2xl border border-slate-200/90 bg-white p-10 text-center shadow-sm">
+                  <div className="flex flex-col items-center rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-10 text-center shadow-sm w-full">
                     <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/12 text-emerald-600">
                       <Check className="h-7 w-7" strokeWidth={2} />
                     </span>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                 ) : (
                   <form
                     onSubmit={onSubmit}
-                    className="rounded-3xl border border-slate-200/90 bg-white p-7 sm:p-9 shadow-sm"
+                    className="w-full rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-8 md:p-9 shadow-sm"
                   >
                     <h2 className="font-display text-2xl font-bold text-[#0A192F]">Project inquiry</h2>
                     <p className="mt-1.5 text-sm text-slate-500">All fields marked * are required.</p>
@@ -204,9 +204,9 @@ export default function ContactPage() {
                           id="contact-consent"
                           name="consent"
                           required
-                          className="mt-0.5 h-4 w-4 rounded border-ink-300 text-volt-600 focus:ring-volt-500"
+                          className="mt-0.5 h-4 w-4 rounded border-ink-300 text-volt-600 focus:ring-volt-500 shrink-0"
                         />
-                        <span className="text-sm text-ink-500">
+                        <span className="text-xs sm:text-sm text-ink-500 leading-relaxed">
                           I agree to the{' '}
                           <a href="/privacy-policy" className="font-medium text-ink-700 hover:underline underline-offset-4">
                             privacy policy
@@ -216,11 +216,11 @@ export default function ContactPage() {
                       </label>
                     </div>
 
-                    <div className="mt-7 flex items-center justify-between gap-4">
-                      <p className="text-xs text-ink-400">
+                    <div className="mt-7 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                      <p className="text-xs text-ink-400 text-center sm:text-left">
                         We typically reply within 2 business days.
                       </p>
-                      <Button type="submit" variant="secondary" size="md" disabled={loading}>
+                      <Button type="submit" variant="secondary" size="md" disabled={loading} className="w-full sm:w-auto justify-center">
                         {loading ? 'Sending…' : 'Send message'}
                         {!loading && <ArrowRight className="h-4 w-4" />}
                       </Button>
@@ -231,15 +231,15 @@ export default function ContactPage() {
             </div>
 
             {/* Info sidebar */}
-            <aside className="lg:col-span-5 space-y-5">
+            <aside className="w-full lg:col-span-5 space-y-5">
               {/* Calendly Discovery Call Card */}
               <Reveal delay={0.08}>
-                <div className="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm">
+                <div className="w-full rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#00A3FF]/15 text-[#00A3FF]">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#00A3FF]/15 text-[#00A3FF]">
                       <Calendar className="h-5 w-5" strokeWidth={1.8} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <h4 className="font-display text-base font-bold text-[#0A192F]">
                         Book a 15-Min Strategy Session
                       </h4>
@@ -259,7 +259,7 @@ export default function ContactPage() {
               </Reveal>
 
               <Reveal delay={0.12}>
-                <div className="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm space-y-4">
+                <div className="w-full rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-sm space-y-4">
                   <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#FF6400]">
                     Direct Contacts
                   </p>
@@ -280,7 +280,7 @@ export default function ContactPage() {
 
               {/* Office Address */}
               <Reveal delay={0.15}>
-                <div className="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm">
+                <div className="w-full rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-sm">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3FF] mb-4">
                     <MapPin className="h-4 w-4" />
                     <span>Office Address</span>
@@ -299,7 +299,7 @@ export default function ContactPage() {
               </Reveal>
 
               <Reveal delay={0.18}>
-                <div className="rounded-3xl border border-slate-200/90 bg-[#0A192F] p-7 text-white shadow-sm">
+                <div className="w-full rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-[#0A192F] p-5 sm:p-7 text-white shadow-sm">
                   <p className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3FF]">
                     <span>//</span>
                     <span>Guaranteed Working Session</span>

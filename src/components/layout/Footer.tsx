@@ -94,23 +94,23 @@ export function Footer() {
         </div>
 
         {/* Accreditation Trust Strip */}
-        <div className="mt-12 pt-8 border-t border-white/8 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
-          <div className="flex flex-wrap items-center gap-4 sm:gap-8">
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <span className="h-2 w-2 rounded-full bg-[#00A3FF]" />
-              <strong>Clutch:</strong> 4.9/5 Rating (120+ Reviews)
+        <div className="mt-12 pt-8 border-t border-white/8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-xs text-slate-400">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2.5">
+            <span className="inline-flex items-center gap-1.5 text-slate-300">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-[#00A3FF]" />
+              <span><strong>Clutch:</strong> 4.9/5 Rating (120+ Reviews)</span>
             </span>
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <span className="h-2 w-2 rounded-full bg-[#FF6400]" />
-              <strong>Security:</strong> ISO 27001 & ISO 9001 Certified
+            <span className="inline-flex items-center gap-1.5 text-slate-300">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-[#FF6400]" />
+              <span><strong>Security:</strong> ISO 27001 & ISO 9001 Certified</span>
             </span>
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <span className="h-2 w-2 rounded-full bg-amber-400" />
-              <strong>Cloud:</strong> AWS Select Tier Partner
+            <span className="inline-flex items-center gap-1.5 text-slate-300">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-amber-400" />
+              <span><strong>Cloud:</strong> AWS Select Tier Partner</span>
             </span>
           </div>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 pt-1 md:pt-0">
             <Link to="/privacy-policy" className="text-xs text-slate-400 hover:text-white transition-colors">
               Privacy Policy
             </Link>

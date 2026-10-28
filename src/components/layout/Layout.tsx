@@ -22,7 +22,7 @@ export function Layout() {
   }, [pathname, hash]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col w-full max-w-[100vw] overflow-x-hidden">
       <Navbar />
       <PageTransition>
         <Outlet />

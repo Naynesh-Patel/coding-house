@@ -23,7 +23,7 @@ export function PageHero({
 }) {
   return (
     <section
-      className={`relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-20 ${
+      className={`relative overflow-hidden pt-24 pb-10 sm:pt-36 sm:pb-16 ${
         dark ? 'bg-ink-950 text-paper-50' : 'bg-paper-50'
       }`}
     >
