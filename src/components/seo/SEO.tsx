@@ -11,7 +11,7 @@ export interface SEOProps {
   schema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
-const DEFAULT_IMAGE = 'https://codinghouse.in/coding-house-logo.jpg';
+const DEFAULT_IMAGE = 'https://codinghouse.in/logo.png';
 const SITE_NAME = 'Coding House';
 const BASE_URL = 'https://codinghouse.in';
 

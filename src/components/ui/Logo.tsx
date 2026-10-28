@@ -18,9 +18,9 @@ export function CodingHouseIcon({
 }) {
   return (
     <img
-      src="/coding-house-logo.jpg"
-      alt="Coding House"
-      className={`${className} object-contain rounded-lg`}
+      src="/logo.png"
+      alt="Coding House Logo"
+      className={`${className} object-contain shrink-0 ${dark ? 'rounded-lg bg-white/95 p-0.5 shadow-sm' : ''}`}
     />
   );
 }
@@ -31,33 +31,26 @@ export function Logo({
   showTagline = false,
   size = 'md',
   markOnly = false,
-  useImage = true,
 }: LogoProps) {
-  const imgSizes = {
-    sm: 'h-8 w-8',
-    md: 'h-10 w-10 sm:h-11 sm:w-11',
-    lg: 'h-14 w-14',
+  const iconSizes = {
+    sm: 'h-7 w-7',
+    md: 'h-8 w-8',
+    lg: 'h-11 w-11',
   };
 
   const textSizes = {
     sm: 'text-base',
-    md: 'text-lg sm:text-xl',
+    md: 'text-lg',
     lg: 'text-2xl',
   };
 
   return (
-    <span className={`inline-flex items-center gap-2.5 sm:gap-3 group ${className}`}>
-      <span
-        className={`inline-flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 ${
-          dark
-            ? 'rounded-xl bg-white p-1 shadow-md ring-1 ring-white/20'
-            : 'rounded-xl bg-white p-1 shadow-sm border border-slate-200/90'
-        }`}
-      >
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+      <span className="flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
         <img
-          src="/coding-house-logo.jpg"
-          alt="Coding House"
-          className={`${imgSizes[size]} object-contain rounded-lg`}
+          src="/logo.png"
+          alt="Coding House Logo"
+          className={`${iconSizes[size]} object-contain shrink-0 ${dark ? 'rounded-lg bg-white/95 p-0.5 shadow-sm' : ''}`}
         />
       </span>
 
@@ -73,10 +66,10 @@ export function Logo({
           </span>
 
           {showTagline && (
-            <span className="mt-1 flex items-center gap-1.5 text-[8.5px] font-bold tracking-[0.16em] uppercase text-slate-400">
-              <span className="h-px w-3 bg-slate-500/50" />
+            <span className="mt-1 flex items-center gap-1.5 text-[8.5px] font-bold tracking-[0.16em] uppercase text-slate-500">
+              <span className="h-px w-3 bg-slate-300" />
               <span>BUILDING SOLUTIONS. GROWING BUSINESSES.</span>
-              <span className="h-px w-3 bg-slate-500/50" />
+              <span className="h-px w-3 bg-slate-300" />
             </span>
           )}
         </span>
