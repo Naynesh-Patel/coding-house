@@ -17,37 +17,11 @@ export function CodingHouseIcon({
   dark?: boolean;
 }) {
   return (
-    <svg
-      viewBox="0 0 120 120"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      {/* Left Cyan Bracket */}
-      <path
-        d="M50 28L28 50C22.5 55.5 22.5 64.5 28 70L50 92"
-        stroke="#00A3FF"
-        strokeWidth="14"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Center Deep Navy / White Slash */}
-      <path
-        d="M67 22L53 98"
-        stroke={dark ? '#F8FAFC' : '#0A192F'}
-        strokeWidth="14"
-        strokeLinecap="round"
-      />
-      {/* Right Vivid Orange Bracket */}
-      <path
-        d="M70 28L92 50C97.5 55.5 97.5 64.5 92 70L70 92"
-        stroke="#FF6400"
-        strokeWidth="14"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <img
+      src="/coding-house-logo.jpg"
+      alt="Coding House"
+      className={`${className} object-contain rounded-lg`}
+    />
   );
 }
 
@@ -57,42 +31,34 @@ export function Logo({
   showTagline = false,
   size = 'md',
   markOnly = false,
-  useImage = false,
+  useImage = true,
 }: LogoProps) {
-  if (useImage) {
-    return (
-      <div className={`inline-flex items-center ${className}`}>
-        <img
-          src="/coding-house-logo.jpg"
-          alt="Coding House Logo"
-          className={
-            size === 'sm'
-              ? 'h-8 w-auto object-contain'
-              : size === 'lg'
-              ? 'h-14 w-auto object-contain'
-              : 'h-10 w-auto object-contain'
-          }
-        />
-      </div>
-    );
-  }
-
-  const iconSizes = {
-    sm: 'h-7 w-7',
-    md: 'h-8 w-8',
-    lg: 'h-11 w-11',
+  const imgSizes = {
+    sm: 'h-8 w-8',
+    md: 'h-10 w-10 sm:h-11 sm:w-11',
+    lg: 'h-14 w-14',
   };
 
   const textSizes = {
     sm: 'text-base',
-    md: 'text-lg',
+    md: 'text-lg sm:text-xl',
     lg: 'text-2xl',
   };
 
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <span className="flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
-        <CodingHouseIcon className={iconSizes[size]} dark={dark} />
+    <span className={`inline-flex items-center gap-2.5 sm:gap-3 group ${className}`}>
+      <span
+        className={`inline-flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 ${
+          dark
+            ? 'rounded-xl bg-white p-1 shadow-md ring-1 ring-white/20'
+            : 'rounded-xl bg-white p-1 shadow-sm border border-slate-200/90'
+        }`}
+      >
+        <img
+          src="/coding-house-logo.jpg"
+          alt="Coding House"
+          className={`${imgSizes[size]} object-contain rounded-lg`}
+        />
       </span>
 
       {!markOnly && (
@@ -107,10 +73,10 @@ export function Logo({
           </span>
 
           {showTagline && (
-            <span className="mt-1 flex items-center gap-1.5 text-[8.5px] font-bold tracking-[0.16em] uppercase text-slate-500">
-              <span className="h-px w-3 bg-slate-300" />
+            <span className="mt-1 flex items-center gap-1.5 text-[8.5px] font-bold tracking-[0.16em] uppercase text-slate-400">
+              <span className="h-px w-3 bg-slate-500/50" />
               <span>BUILDING SOLUTIONS. GROWING BUSINESSES.</span>
-              <span className="h-px w-3 bg-slate-300" />
+              <span className="h-px w-3 bg-slate-500/50" />
             </span>
           )}
         </span>
