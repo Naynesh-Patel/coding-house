@@ -1,0 +1,9 @@
+# Robots.txt for Coding House
+User-agent: *
+Allow: /
+
+# Disallow internal or non-indexed paths
+Disallow: /demo
+
+# Sitemap location
+Sitemap: https://codinghouse.in/sitemap.xml
