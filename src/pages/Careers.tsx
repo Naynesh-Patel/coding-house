@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ArrowRight, MapPin, Briefcase, Clock, Users, Heart, BookOpen, Coffee } from 'lucide-react';
 import { Container, Section, SectionHeader } from '@/components/ui/Layout';
 import { Button } from '@/components/ui/Button';
@@ -6,6 +7,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { CTABand } from '@/components/ui/CTABand';
 import { companyInfo } from '@/lib/site';
 import { SEO } from '@/components/seo/SEO';
+import { ApplyModal } from '@/components/ui/ApplyModal';
 
 const openings = [
   { role: 'Full-Stack Engineer', team: 'Engineering', location: 'Remote · India', type: 'Intern', description: 'Build and maintain modern web applications, design clean APIs, and contribute across the full development stack.' },
@@ -24,6 +26,14 @@ const values = [
 ];
 
 export default function CareersPage() {
+  const [selectedRole, setSelectedRole] = useState<string>('Full-Stack Engineer');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenApply = (role: string) => {
+    setSelectedRole(role);
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <SEO
@@ -114,7 +124,8 @@ export default function CareersPage() {
                       </div>
                     </div>
                     <Button
-                      href={`mailto:${companyInfo.careersEmail}?subject=Application: ${o.role}`}
+                      type="button"
+                      onClick={() => handleOpenApply(o.role)}
                       variant="outline"
                       size="sm"
                       className="shrink-0 self-start"
@@ -132,7 +143,15 @@ export default function CareersPage() {
             <div className="mt-8 rounded-2xl border border-dashed border-ink-900/12 bg-paper-100 p-6 sm:p-8">
               <p className="font-display text-base font-medium text-ink-950">Don't see a fit?</p>
               <p className="mt-1.5 text-sm text-ink-500">
-                We're always glad to meet exceptional engineers and designers. If you do excellent work and care about how it's done, email{' '}
+                We're always glad to meet exceptional talent. If you do excellent work and want to intern with us,{' '}
+                <button
+                  type="button"
+                  onClick={() => handleOpenApply('Other / General Internship')}
+                  className="font-medium text-volt-700 hover:underline underline-offset-4 cursor-pointer"
+                >
+                  click here to submit your resume
+                </button>
+                {' '}or email{' '}
                 <a href={`mailto:${companyInfo.careersEmail}`} className="font-medium text-volt-700 hover:underline underline-offset-4">
                   {companyInfo.careersEmail}
                 </a>.
@@ -143,6 +162,13 @@ export default function CareersPage() {
       </Section>
 
       <CTABand />
+
+      <ApplyModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialRole={selectedRole}
+        rolesList={openings.map((o) => o.role).concat('Other / General Internship')}
+      />
     </>
   );
 }
