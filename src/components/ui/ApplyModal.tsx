@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Upload, FileText, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { X, Upload, FileText, CheckCircle2, AlertCircle, Loader2, Mail, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 interface ApplyModalProps {
@@ -119,47 +119,96 @@ export function ApplyModal({
 
     setLoading(true);
 
+    const formData = new FormData();
+    formData.append('name', fullName.trim());
+    formData.append('email', email.trim());
+    formData.append('phone', phone.trim());
+    formData.append('applied_role', role);
+    formData.append('type', 'Internship');
+    formData.append('portfolio_or_github', portfolio.trim() || 'N/A');
+    formData.append('description_message', description.trim());
+    formData.append('attachment', resumeFile);
+    formData.append('resume', resumeFile);
+
+    // FormSubmit config fields
+    formData.append('_subject', `New Internship Application: ${fullName.trim()} — ${role}`);
+    formData.append('_template', 'table');
+    formData.append('_captcha', 'false');
+
+    let success = false;
+
+    // Attempt 1: Native server PHP handler on Hostinger (/send-application.php)
     try {
-      const formData = new FormData();
-      formData.append('name', fullName.trim());
-      formData.append('email', email.trim());
-      formData.append('phone', phone.trim());
-      formData.append('applied_role', role);
-      formData.append('type', 'Internship');
-      formData.append('portfolio_or_github', portfolio.trim() || 'N/A');
-      formData.append('description_message', description.trim());
-      formData.append('attachment', resumeFile);
-
-      // FormSubmit config fields
-      formData.append('_subject', `New Internship Application: ${fullName.trim()} — ${role}`);
-      formData.append('_template', 'table');
-      formData.append('_captcha', 'false');
-
-      const response = await fetch('https://formsubmit.co/ajax/support@codinghouse.in', {
+      const phpRes = await fetch('/send-application.php', {
         method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          // Do NOT set Content-Type header so the browser sets multipart/form-data boundary automatically
-        },
+        headers: { Accept: 'application/json' },
         body: formData,
       });
 
-      const result = await response.json().catch(() => ({}));
-
-      if (response.ok && result.success !== 'false') {
-        setSubmitted(true);
-      } else {
-        throw new Error(result.message || 'Server error while sending application.');
+      if (phpRes.ok) {
+        const phpData = await phpRes.json().catch(() => ({}));
+        if (phpData.success) {
+          success = true;
+        }
       }
-    } catch (err: any) {
-      console.error('Internship application error:', err);
-      setErrorMsg(
-        'Could not send your application automatically. Please email your resume directly to support@codinghouse.in or WhatsApp us at +91 97236 78848.'
-      );
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      console.warn('Local PHP handler attempt failed:', err);
     }
+
+    // Attempt 2: FormSubmit.co
+    if (!success) {
+      try {
+        const fsRes = await fetch('https://formsubmit.co/ajax/support@codinghouse.in', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData,
+        });
+
+        if (fsRes.ok) {
+          const fsData = await fsRes.json().catch(() => ({}));
+          if (fsData.success !== 'false') {
+            success = true;
+          }
+        }
+      } catch (err) {
+        console.warn('FormSubmit fallback failed:', err);
+      }
+    }
+
+    if (success) {
+      setSubmitted(true);
+    } else {
+      setErrorMsg(
+        'Online submission server is temporarily unavailable. Please click the button below to send your application and attach your resume directly via Email or WhatsApp.'
+      );
+    }
+
+    setLoading(false);
   };
+
+  const mailtoSubject = encodeURIComponent(`Internship Application: ${fullName.trim() || 'Applicant'} — ${role}`);
+  const mailtoBody = encodeURIComponent(
+    `Dear Coding House Team,\n\nI would like to apply for the ${role} (Internship) role.\n\n` +
+      `My Details:\n` +
+      `- Full Name: ${fullName.trim()}\n` +
+      `- Email: ${email.trim()}\n` +
+      `- Phone: ${phone.trim()}\n` +
+      `- Applied Role: ${role} (Intern)\n` +
+      `- Portfolio / LinkedIn: ${portfolio.trim() || 'N/A'}\n\n` +
+      `About Myself & Skills:\n${description.trim()}\n\n` +
+      `(Note: I have attached my resume to this email)\n\nThank you,\n${fullName.trim()}`
+  );
+  const mailtoUrl = `mailto:support@codinghouse.in?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+  const whatsappText = encodeURIComponent(
+    `Hello Coding House, I would like to apply for the ${role} (Internship) position.\n\n` +
+      `Name: ${fullName.trim()}\n` +
+      `Email: ${email.trim()}\n` +
+      `Phone: ${phone.trim()}\n` +
+      `Portfolio: ${portfolio.trim() || 'N/A'}\n\n` +
+      `Please let me know where to send my resume PDF.`
+  );
+  const whatsappUrl = `https://wa.me/919723678848?text=${whatsappText}`;
 
   if (!isOpen) return null;
 
@@ -226,15 +275,28 @@ export function ApplyModal({
             </div>
 
             {errorMsg && (
-              <div className="mt-4 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-3.5 text-xs text-red-700">
-                <AlertCircle className="h-4 w-4 shrink-0 text-red-600 mt-0.5" />
-                <div className="flex-1">
-                  <p>{errorMsg}</p>
+              <div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-xs text-red-700">
+                <div className="flex items-start gap-2.5">
+                  <AlertCircle className="h-4 w-4 shrink-0 text-red-600 mt-0.5" />
+                  <p className="leading-relaxed font-medium">{errorMsg}</p>
+                </div>
+
+                <div className="mt-3.5 pt-3 border-t border-red-200 flex flex-wrap gap-2">
                   <a
-                    href={`mailto:support@codinghouse.in?subject=Internship Application: ${role}`}
-                    className="mt-1 inline-block font-semibold underline"
+                    href={mailtoUrl}
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 transition-colors shadow-sm"
                   >
-                    Click here to email support@codinghouse.in directly
+                    <Mail className="h-3.5 w-3.5" />
+                    Send via Email App
+                  </a>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors shadow-sm"
+                  >
+                    <MessageSquare className="h-3.5 w-3.5" />
+                    Send via WhatsApp
                   </a>
                 </div>
               </div>
