@@ -8,11 +8,12 @@ import { companyInfo } from '@/lib/site';
 import { SEO } from '@/components/seo/SEO';
 
 const openings = [
-  { role: 'Senior Full-Stack Engineer', team: 'Engineering', location: 'Remote · India', type: 'Full-time', description: 'Build and maintain complex server-side systems, design APIs, and contribute to architecture decisions across client engagements.' },
-  { role: 'Frontend Engineer (React)', team: 'Engineering', location: 'Remote · India', type: 'Full-time', description: 'Build fast, accessible, and maintainable user interfaces. You care about performance, component design, and the details that make products feel great.' },
-  { role: 'DevOps Engineer', team: 'Platform', location: 'Remote · India', type: 'Full-time', description: 'Design and maintain CI/CD pipelines, cloud infrastructure, and observability systems for client projects.' },
-  { role: 'UI/UX Designer', team: 'Design', location: 'Remote · India', type: 'Full-time', description: 'Lead product design across client engagements — from research and flows through high-fidelity interfaces and coded design systems.' },
-  { role: 'QA Automation Engineer', team: 'Quality', location: 'Remote · India', type: 'Full-time', description: 'Design and implement test automation frameworks, ensure coverage on critical paths, and integrate quality into CI pipelines.' },
+  { role: 'Full-Stack Engineer', team: 'Engineering', location: 'Remote · India', type: 'Intern', description: 'Build and maintain modern web applications, design clean APIs, and contribute across the full development stack.' },
+  { role: 'Frontend Engineer (React)', team: 'Engineering', location: 'Remote · India', type: 'Intern', description: 'Build fast, accessible, and maintainable user interfaces. You care about performance, component design, and the details that make products feel great.' },
+  { role: 'DevOps Engineer', team: 'Platform', location: 'Remote · India', type: 'Intern', description: 'Design and maintain CI/CD pipelines, cloud infrastructure, and observability systems for client projects.' },
+  { role: 'UI/UX Designer', team: 'Design', location: 'Remote · India', type: 'Intern', description: 'Lead product design across client engagements — from research and flows through high-fidelity interfaces and coded design systems.' },
+  { role: 'QA Automation Engineer', team: 'Quality', location: 'Remote · India', type: 'Intern', description: 'Design and implement test automation frameworks, ensure coverage on critical paths, and integrate quality into CI pipelines.' },
+  { role: 'Digital Marketing', team: 'Marketing', location: 'Remote · India', type: 'Intern', description: 'Plan and execute digital campaigns, manage SEO, social media strategies, and content outreach to drive brand engagement.' },
 ];
 
 const values = [
@@ -26,14 +27,14 @@ export default function CareersPage() {
   return (
     <>
       <SEO
-        title="Careers & Engineering Opportunities"
-        description="Join Coding House as a software engineer, UI/UX designer, DevOps, or QA engineer. Work on high-impact projects with senior engineers in a craft-first culture."
-        keywords={['Coding House careers', 'software engineering jobs Surat', 'remote developer jobs India', 'frontend backend developer openings']}
+        title="Careers & Internship Opportunities"
+        description="Join Coding House as an intern in software engineering, UI/UX design, DevOps, QA, or digital marketing. Work on high-impact projects with senior engineers in a craft-first culture."
+        keywords={['Coding House careers', 'internship openings India', 'software engineering intern Surat', 'digital marketing intern', 'frontend backend developer openings']}
       />
       <PageHero
         eyebrow="Careers"
         title="Build software you're proud to put your name on."
-        description="We're a remote-first engineering studio looking for senior people who care about craft, clarity, and shipping things that work."
+        description="We're a remote-first engineering studio looking for talented and ambitious people who care about craft, clarity, and shipping things that work."
         breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Careers' }]}
       />
 
