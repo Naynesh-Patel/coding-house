@@ -121,3 +121,4 @@ if ($mailSent) {
         'message' => 'Failed to send email via server mail service.'
     ]);
 }
+

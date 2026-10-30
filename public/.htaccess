@@ -1,9 +1,17 @@
+<IfModule mod_mime.c>
+  AddType image/x-icon .ico
+  AddType image/png .png
+  AddType image/svg+xml .svg
+  AddType application/json .json
+  AddType text/xml .xml
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Do not rewrite PHP scripts or existing physical files/directories
-  RewriteCond %{REQUEST_URI} \.php$ [NC,OR]
+  # Do not rewrite PHP scripts, favicon, sitemap, robots, or existing physical files/directories
+  RewriteCond %{REQUEST_URI} \.(ico|png|jpg|jpeg|svg|css|js|xml|txt|php)$ [NC,OR]
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
