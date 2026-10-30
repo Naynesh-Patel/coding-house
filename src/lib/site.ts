@@ -662,7 +662,7 @@ export const companyInfo = {
   },
   location: 'Surat, Gujarat, India',
   social: {
-    linkedin: 'https://linkedin.com/company/codinghouse',
+    linkedin: 'https://www.linkedin.com/company/coding-house-tech/',
     github: 'https://github.com/codinghouse',
     twitter: 'https://twitter.com/codinghouse_in',
   },
